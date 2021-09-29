@@ -22,7 +22,7 @@ import {
   TRASH_PAGE,
 } from "../../utils/rootPath";
 import useStyles from "./SideBarStyle";
-const SideBar = ({ isOpenSideBar, flipIsOpenSideBar }) => {
+const SideBar = ({ isOpenSideBar, flipIsOpenSideBar, setIsOpenModal }) => {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:990px)");
   const isUser = useSelector(isUserSelector);
@@ -41,7 +41,7 @@ const SideBar = ({ isOpenSideBar, flipIsOpenSideBar }) => {
       className={clsx(classes.sidebar, matches && classes.desktop)}
       variant={matches ? "permanent" : "temporary"}
     >
-      <List subheader={!isUser && <AuthBox />}>
+      <List subheader={!isUser && <AuthBox setIsOpenModal={setIsOpenModal} />}>
         {menu.map((menuItem, idx) =>
           Object.keys(menuItem).length ? (
             <Link to={menuItem.href} key={idx}>

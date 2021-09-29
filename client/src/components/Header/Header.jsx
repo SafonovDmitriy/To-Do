@@ -9,16 +9,15 @@ import {
 import { Menu } from "@mui/icons-material";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Avatar, SignModalForm } from "..";
-import { useToggle } from "../../hooks/useToggle";
+import { Avatar } from "..";
 import { isUserSelector } from "../../redux/selectors";
-import { Button, Modal } from "../UI";
+import { Button } from "../UI";
 import useStyles from "./HeaderStyles";
 
-const Header = ({ flipIsOpenSideBar }) => {
+const Header = ({ flipIsOpenSideBar, setIsOpenModal }) => {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:990px)");
-  const [isOpenModal, setIsOpenModal] = useToggle(false);
+
   const isUser = useSelector(isUserSelector);
   useEffect(() => {
     if (isUser) {
@@ -28,9 +27,6 @@ const Header = ({ flipIsOpenSideBar }) => {
   }, [isUser]);
   return (
     <AppBar className={classes.header}>
-      <Modal open={isOpenModal} onClose={setIsOpenModal}>
-        <SignModalForm />
-      </Modal>
       <Toolbar className={classes.container}>
         <Box className={classes.logoBox}>
           {!matches && (

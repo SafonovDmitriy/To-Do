@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./AppStyle";
-import { Header, Root, SideBar } from "./components";
+import { Header, Root, SideBar, SignModalForm } from "./components";
+import { Modal } from "./components/UI";
 import { auth } from "./firebase";
 import { useToggle } from "./hooks/useToggle";
 import { getUserAction } from "./redux/actions/UserActions";
@@ -19,13 +20,20 @@ function App() {
   }, [dispatch, user]);
 
   const [isOpenSideBar, flipIsOpenSideBar] = useToggle(false);
-
+  const [isOpenModal, setIsOpenModal] = useToggle(false);
   return userLoading ? (
     <Box className={classes.app}>
-      <Header flipIsOpenSideBar={flipIsOpenSideBar} />
+      <Modal open={isOpenModal} onClose={setIsOpenModal}>
+        <SignModalForm />
+      </Modal>
+      <Header
+        flipIsOpenSideBar={flipIsOpenSideBar}
+        setIsOpenModal={setIsOpenModal}
+      />
       <SideBar
         isOpenSideBar={isOpenSideBar}
         flipIsOpenSideBar={flipIsOpenSideBar}
+        setIsOpenModal={setIsOpenModal}
       />
       <Root />
     </Box>
