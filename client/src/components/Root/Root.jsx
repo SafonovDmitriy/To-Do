@@ -1,8 +1,8 @@
 import { Box, useMediaQuery } from "@material-ui/core";
 import React from "react";
-import { Route, Switch } from "react-router";
-import { HomePage } from "..";
-import { HOME_PAGE } from "../../utils/rootPath";
+import { Redirect, Route, Switch } from "react-router";
+import { ListsPage } from "..";
+import { LISTS_PAGE } from "../../utils/rootPath";
 import useStyles from "./RootStyle";
 import clsx from "clsx";
 const Root = () => {
@@ -16,7 +16,8 @@ const Root = () => {
       )}
     >
       <Switch>
-        <Route exact path={HOME_PAGE} component={HomePage} />
+        <Route exact path={LISTS_PAGE} component={ListsPage} />
+        <Redirect to={LISTS_PAGE} />
       </Switch>
     </Box>
   );

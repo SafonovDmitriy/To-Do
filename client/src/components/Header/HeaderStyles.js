@@ -2,14 +2,32 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles({
   header: {
-    backgroundColor: "#7b757a52",
-    height: 50,
-    transition: "all 1s",
+    backgroundColor: "#54ab26",
+    height: 64,
   },
-  sideBarOpen: {
-    marginLeft: 180,
+  container: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    justifyContent: "space-between",
   },
-  sideBarClose: {
-    marginLeft: 60,
+  openSideBarBtn: {
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    borderRadius: 10,
+    "&:hover": {
+      backgroundColor: "transparent",
+      boxShadow: "none",
+    },
+  },
+  logoBox: {
+    "& *": {
+      color: "#fff",
+    },
+
+    display: "flex",
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
   },
 });

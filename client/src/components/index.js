@@ -1,4 +1,10 @@
 export { default as Header } from "./Header/Header";
-export { default as HomePage } from "./HomePage/HomePage";
+export { default as ListsPage } from "./ListsPage/ListsPage";
 export { default as Root } from "./Root/Root";
 export { default as SideBar } from "./SideBar/SideBar";
+export { default as AuthBox } from "./SideBar/AuthBox/AuthBox";
+export { default as SignModalForm } from "./SignModalForm/SignModalForm";
+export { default as SignInForm } from "./SignInForm/SignInForm";
+export { default as SignUpForm } from "./SignUpForm/SignUpForm";
+export { default as GreenRectangle } from "./GreenRectangle/GreenRectangle";
+export { default as Avatar } from "./Avatar/Avatar";
