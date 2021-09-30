@@ -19,5 +19,8 @@ export default makeStyles({
       boxShadow:
         "0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%)",
     },
+    "&:disabled": {
+      backgroundColor: "grey",
+    },
   },
 });

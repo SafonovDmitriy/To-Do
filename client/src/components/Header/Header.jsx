@@ -39,7 +39,7 @@ const Header = ({ flipIsOpenSideBar, setIsOpenModal }) => {
           </Typography>
         </Box>
         {!isUser ? (
-          <Button onClick={setIsOpenModal}>Sign In</Button>
+          <Button onClick={() => setIsOpenModal()}>Sign In</Button>
         ) : (
           <Avatar />
         )}

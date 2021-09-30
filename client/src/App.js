@@ -1,5 +1,5 @@
 import { Box } from "@material-ui/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./AppStyle";
@@ -20,20 +20,25 @@ function App() {
   }, [dispatch, user]);
 
   const [isOpenSideBar, flipIsOpenSideBar] = useToggle(false);
-  const [isOpenModal, setIsOpenModal] = useToggle(false);
+  const [isOpenSignModalForm, setIsOpenSignModalForm] = useToggle(false);
+  const [typeSignModal, setTypeSignModalForm] = useState();
+  const getTypeSignModal = (type) => {
+    setTypeSignModalForm(type);
+    setIsOpenSignModalForm();
+  };
   return userLoading ? (
     <Box className={classes.app}>
-      <Modal open={isOpenModal} onClose={setIsOpenModal}>
-        <SignModalForm />
+      <Modal open={isOpenSignModalForm} onClose={setIsOpenSignModalForm}>
+        <SignModalForm initialTabValue={typeSignModal} />
       </Modal>
       <Header
         flipIsOpenSideBar={flipIsOpenSideBar}
-        setIsOpenModal={setIsOpenModal}
+        setIsOpenModal={getTypeSignModal}
       />
       <SideBar
         isOpenSideBar={isOpenSideBar}
         flipIsOpenSideBar={flipIsOpenSideBar}
-        setIsOpenModal={setIsOpenModal}
+        setIsOpenModal={getTypeSignModal}
       />
       <Root />
     </Box>
