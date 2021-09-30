@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { auth } from "../../firebase";
 import formGenerator from "../../utils/formGenerator";
 import { required, validateEmail } from "../../utils/validation";
 import useStyles from "./SignInFormStyle";
@@ -13,7 +14,7 @@ const SignInForm = () => {
         { func: required, message: "Field is Required" },
         { func: validateEmail, message: "Error with Email" },
       ],
-      any: { label: "Username or email" },
+      any: { label: "Email" },
     },
     {
       name: "password",
@@ -23,8 +24,15 @@ const SignInForm = () => {
     },
   ]);
   const [error, setError] = useState({});
+  const [formError, setFormError] = useState();
+
   const onSubmit = (form) => {
-    console.log(`form`, form);
+    auth
+      .signInWithEmailAndPassword(form.login, form.password)
+      .then((user) => user)
+      .catch(({ message }) => {
+        setFormError(message);
+      });
   };
   return formGenerator({
     onSubmit,
@@ -34,17 +42,7 @@ const SignInForm = () => {
     setError,
     submitText: "Sign In",
     className: classes.form,
+    formError,
   });
-  // <form className={classes.form} onSubmit={onSubmit}>
-  //   <TextField {...login} label="Username or email" />
-  //   <TextField {...password} label="Password" />
-
-  //   <Button
-  //     disabled={!password.value.length || !login.value.length}
-  //     type="submit"
-  //   >
-  //     Sign In
-  //   </Button>
-  // </form>
 };
 export default SignInForm;

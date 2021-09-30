@@ -1,5 +1,4 @@
 import { SET_LOADING_USER, SET_USER } from "../actionTypes";
-
 export const setUserAction = (user) => {
   return {
     type: SET_USER,

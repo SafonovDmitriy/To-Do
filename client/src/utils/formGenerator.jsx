@@ -1,5 +1,6 @@
 import { Box, TextField } from "@material-ui/core";
 import { Button, Checkbox } from "../components/UI";
+import { FormHelperText } from "@mui/material";
 // example form with one field
 // form:[{
 //     name: String(*),
@@ -26,6 +27,7 @@ const formGenerator = ({
   submitText,
   titleGroups = {},
   onSubmit = () => {},
+  formError = "",
 }) => {
   const _formJSX = [];
   const _groupFieldsJSX = {};
@@ -59,12 +61,16 @@ const formGenerator = ({
       Object.assign(acc, { [item.name]: item.value });
       return acc;
     }, {});
+    let formIsNotEmpty = false;
     for (const key in _form) {
-      if (!_form[key].trim().length) {
+      if (_form[key] === "") {
         return;
       }
+      formIsNotEmpty = true;
     }
-    onSubmit(_form);
+    if (formIsNotEmpty) {
+      onSubmit(_form);
+    }
   };
 
   const validationField = (_form = form) => {
@@ -84,7 +90,6 @@ const formGenerator = ({
     switch (item.type) {
       case formGeneratorTypes.checkbox:
         return "checked";
-
       default:
         return "value";
     }
@@ -156,6 +161,7 @@ const formGenerator = ({
           {submitText}
         </Button>
       )}
+      <FormHelperText error children={formError} />
     </form>
   ) : null;
 };

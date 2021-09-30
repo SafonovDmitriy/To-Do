@@ -11,7 +11,6 @@ import { Button, Tabs } from "../UI";
 import useStyles from "./SignModalFormStyle";
 export default function SignModalForm({ initialTabValue }) {
   const classes = useStyles();
-  console.log(`initialTabValue`, initialTabValue);
   const tabBtns = [
     { label: "Sign In", value: "signIn" },
     { label: "Sign Up", value: "signUp" },

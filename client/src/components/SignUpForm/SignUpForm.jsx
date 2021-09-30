@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { auth } from "../../firebase";
+
 import formGenerator, { formGeneratorTypes } from "../../utils/formGenerator";
 import { isChecked, required, validateEmail } from "../../utils/validation";
 import useStyles from "./SignUpFormStyle";
@@ -32,8 +34,14 @@ const SignUpForm = () => {
     },
   ]);
   const [error, setError] = useState({});
+  const [formError, setFormError] = useState();
   const onSubmit = (form) => {
-    console.log(`form`, form);
+    auth
+      .createUserWithEmailAndPassword(form.login, form.password)
+      .then((user) => user)
+      .catch(({ message }) => {
+        setFormError(message);
+      });
   };
   return formGenerator({
     onSubmit,
@@ -43,6 +51,7 @@ const SignUpForm = () => {
     setError,
     submitText: "Sign Up",
     className: classes.form,
+    formError,
   });
 
   // return (
