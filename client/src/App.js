@@ -43,7 +43,7 @@ function App() {
           flipIsOpenSideBar={flipIsOpenSideBar}
           setIsOpenModal={getTypeSignModal}
         />
-        <Box display="flex">
+        <Box className={classes.contentWrapper}>
           <SideBar
             isOpenSideBar={isOpenSideBar}
             flipIsOpenSideBar={flipIsOpenSideBar}

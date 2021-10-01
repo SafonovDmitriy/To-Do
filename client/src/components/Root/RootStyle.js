@@ -5,13 +5,9 @@ export default makeStyles({
     display: "flex",
     paddingTop: 64,
     transition: "all 1s",
-    width: "100%",
-    height: "100vh",
-  },
-  sideBarOpen: {
-    // paddingLeft: 280,
-  },
-  sideBarClose: {
-    // marginLeft: 80,
+    justifyContent: "center",
+    height: "calc(100vh - 64px)",
+    width: "100vw",
+    background: "#eeeeee",
   },
 });

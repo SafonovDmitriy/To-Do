@@ -37,7 +37,6 @@ const SideBar = ({ isOpenSideBar, flipIsOpenSideBar, setIsOpenModal }) => {
     : [];
   return (
     <Drawer
-      anchor="left"
       open={isOpenSideBar}
       onClose={flipIsOpenSideBar}
       className={clsx(classes.sidebar, matches && classes.desktop)}

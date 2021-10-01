@@ -10,3 +10,5 @@ export { default as GreenRectangle } from "./GreenRectangle/GreenRectangle";
 export { default as Avatar } from "./Avatar/Avatar";
 export { default as NotAuthorized } from "./NotAuthorized/NotAuthorized";
 export { default as Loading } from "./Loading/Loading";
+export { default as ListItem } from "./ListItem/ListItem";
+export { default as ToDoList } from "./ToDoList/ToDoList";

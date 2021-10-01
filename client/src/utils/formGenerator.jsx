@@ -78,9 +78,12 @@ const formGenerator = ({
     for (const field of _form) {
       if (field.validationFunc) {
         for (const valid of field.validationFunc) {
-          valid.func(field.value, { ...valid.any })
-            ? Object.assign(_errors, { [field.name]: valid.message })
-            : Object.assign(_errors, { [field.name]: "" });
+          if (valid.func(field.value, { ...valid.any })) {
+            Object.assign(_errors, { [field.name]: valid.message });
+            break;
+          } else {
+            Object.assign(_errors, { [field.name]: "" });
+          }
         }
       }
     }
@@ -132,7 +135,7 @@ const formGenerator = ({
             <>
               <h2 children={titleGroups[key]} />
               <Box
-                display="flex"
+                display={_groupFieldsJSX[key].length > 1 ? "flex" : "contents"}
                 flexDirection="row"
                 justifyContent="space-between"
               >
@@ -148,8 +151,8 @@ const formGenerator = ({
       _formJSX.push(_groupFieldsJSX[key].map((item) => item));
     }
   }
-  const disabledBtn =
-    Object.values(error).findIndex((item) => !!item.length) !== -1;
+  const disabledBtn = false;
+  // Object.values(error).findIndex((item) => !!item.length) !== -1;
 
   return form.length ? (
     <form className={className ? className : null} onSubmit={onSubmitHendler}>

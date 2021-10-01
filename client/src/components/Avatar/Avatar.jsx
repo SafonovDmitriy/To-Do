@@ -8,7 +8,7 @@ import { userSelector } from "../../redux/selectors";
 const CustomeAvatar = () => {
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
-  const avatarRef = useRef();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,7 +28,6 @@ const CustomeAvatar = () => {
         alt={user.displayName}
         src={user.photoURL}
         onClick={handleClick}
-        ref={avatarRef}
       />
       <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
         <MenuItem onClick={logOut}>Logout</MenuItem>
