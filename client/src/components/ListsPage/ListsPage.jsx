@@ -4,7 +4,7 @@ import useStyles from "./ListsPageStyle";
 const ListsPage = () => {
   const classes = useStyles();
 
-  return <Box className={classes.home}></Box>;
+  return <Box className={classes.home}>home</Box>;
 };
 
 export default ListsPage;

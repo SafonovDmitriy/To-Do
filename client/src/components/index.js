@@ -8,3 +8,5 @@ export { default as SignInForm } from "./SignInForm/SignInForm";
 export { default as SignUpForm } from "./SignUpForm/SignUpForm";
 export { default as GreenRectangle } from "./GreenRectangle/GreenRectangle";
 export { default as Avatar } from "./Avatar/Avatar";
+export { default as NotAuthorized } from "./NotAuthorized/NotAuthorized";
+export { default as Loading } from "./Loading/Loading";

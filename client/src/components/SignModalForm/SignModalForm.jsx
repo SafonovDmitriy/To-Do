@@ -1,4 +1,4 @@
-import { Google } from "@mui/icons-material";
+import { AssignmentInd, Google } from "@mui/icons-material";
 import { Box } from "@mui/system";
 import clsx from "clsx";
 import React from "react";
@@ -20,6 +20,12 @@ export default function SignModalForm({ initialTabValue }) {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
+  };
+  const signAnonymously = () => {
+    firebase.auth().signInAnonymously();
+
+    // const provider = new firebase.auth.GoogleAuthProvider();
+    // auth.signInWithPopup(provider);
   };
   const isSignIn = tabs.value === tabBtns[0].value;
   return (
@@ -61,6 +67,15 @@ export default function SignModalForm({ initialTabValue }) {
               startIcon={<Google />}
               children={
                 isSignIn ? "Sign in with Google" : "Sign up with Google"
+              }
+            />
+            <Button
+              color="secondary"
+              className="sign-in"
+              onClick={signAnonymously}
+              startIcon={<AssignmentInd />}
+              children={
+                isSignIn ? "Sign in Anonymously" : "Sign up Anonymously"
               }
             />
           </Box>

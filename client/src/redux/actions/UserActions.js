@@ -14,7 +14,6 @@ export const setLoadingAction = (flag) => {
 
 export const getUserAction = (user) => {
   return async (dispatch) => {
-    dispatch(setLoadingAction(true));
     try {
       if (user) {
         const _user = {
@@ -22,6 +21,7 @@ export const getUserAction = (user) => {
           displayName: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
+          isAnonymous: user.isAnonymous,
         };
         dispatch(setUserAction(_user));
       }

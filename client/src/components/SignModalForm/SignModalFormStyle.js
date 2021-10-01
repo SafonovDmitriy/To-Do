@@ -26,8 +26,14 @@ export default makeStyles({
   box: {
     padding: 25,
     display: "flex",
+    flexDirection: "column",
+    gap: 10,
     justifyContent: "center",
     alignItems: "center",
+    "& button": {
+      width: 220,
+      boxSizing: "content-box",
+    },
   },
   fullScreen: { display: "block" },
   partScreen: { flexBasis: "50%" },

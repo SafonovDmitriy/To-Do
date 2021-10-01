@@ -26,13 +26,15 @@ const SideBar = ({ isOpenSideBar, flipIsOpenSideBar, setIsOpenModal }) => {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:990px)");
   const isUser = useSelector(isUserSelector);
-  const menu = [
-    { title: "Shopping lists", href: LISTS_PAGE, icon: <GradingSharp /> },
-    { title: "Trash", href: TRASH_PAGE, icon: <Delete /> },
-    {},
-    { title: "Settings", href: SETTINGS_PAGE, icon: <Settings /> },
-    { title: "Help", href: HELP_PAGE, icon: <Help /> },
-  ];
+  const menu = isUser
+    ? [
+        { title: "Shopping lists", href: LISTS_PAGE, icon: <GradingSharp /> },
+        { title: "Trash", href: TRASH_PAGE, icon: <Delete /> },
+        {},
+        { title: "Settings", href: SETTINGS_PAGE, icon: <Settings /> },
+        { title: "Help", href: HELP_PAGE, icon: <Help /> },
+      ]
+    : [];
   return (
     <Drawer
       anchor="left"

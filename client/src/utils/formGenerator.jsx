@@ -127,16 +127,14 @@ const formGenerator = ({
   for (const key in _groupFieldsJSX) {
     if (key !== 100) {
       _formJSX.push(
-        <Box key={key} style={{ display: "contents" }}>
+        <Box key={key} display="contents">
           {titleGroups[key] ? (
             <>
               <h2 children={titleGroups[key]} />
               <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
               >
                 {_groupFieldsJSX[key].map((item) => item)}
               </Box>

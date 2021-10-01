@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export default makeStyles({
   sidebar: {
     display: "flex",
-
+    width: 260,
     backgroundColor: "#7b757a52",
     "& .MuiDrawer-paper": {
       width: 260,
