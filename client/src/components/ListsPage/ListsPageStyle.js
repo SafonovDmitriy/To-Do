@@ -25,6 +25,7 @@ export default makeStyles({
     boxSizing: "border-box",
     minWidth: 310,
   },
+
   emptyList: {
     display: "flex",
     width: 415,

@@ -8,7 +8,11 @@ import { Modal } from "./components/UI";
 import { auth } from "./firebase";
 import { useToggle } from "./hooks/useToggle";
 import { getUserAction } from "./redux/actions/UserActions";
-import { isUserSelector, userLoadingSelector } from "./redux/selectors";
+import {
+  isAnonymousUserSelector,
+  isUserSelector,
+  userLoadingSelector,
+} from "./redux/selectors";
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -17,6 +21,7 @@ function App() {
 
   const isUser = useSelector(isUserSelector);
   const userLoader = useSelector(userLoadingSelector);
+  const isAnonymous = useSelector(isAnonymousUserSelector);
   useEffect(() => {
     if (!loading) {
       dispatch(getUserAction(user));
@@ -34,7 +39,7 @@ function App() {
   if (userLoader) {
     return (
       <Box className={classes.app}>
-        {!isUser ? (
+        {!isUser || isAnonymous ? (
           <Modal open={isOpenSignModalForm} onClose={setIsOpenSignModalForm}>
             <SignModalForm initialTabValue={typeSignModal} />
           </Modal>

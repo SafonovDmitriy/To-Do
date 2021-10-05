@@ -8,19 +8,20 @@ import { emptyLists } from "../../img";
 import formGenerator from "../../utils/formGenerator";
 import { maxlength, minlength, required } from "../../utils/validation";
 import Loading from "../Loading/Loading";
-import { Button, Modal } from "../UI";
+import { AddFabBtn, Button, Modal } from "../UI";
+
 import useStyles from "./ListsPageStyle";
+
 const ListsPage = () => {
   const classes = useStyles();
 
-  const messagesRef = firestore.collection("lists");
+  const listsRef = firestore.collection("lists");
 
-  const query = messagesRef
+  const query = listsRef
     .where("autorId", "==", `${auth.currentUser.uid}`)
     .where("deleted", "==", false);
   const [lists, loading] = useCollectionData(query, { idField: "id" });
   console.log(`lists`, lists);
-
   const [createListModal, flipCreateListModal] = useToggle(false);
 
   const [form, setValue] = useState([
@@ -60,7 +61,7 @@ const ListsPage = () => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       deleted: false,
     };
-    messagesRef.add(list);
+    listsRef.add(list);
   };
   const showList = () => {
     if (loading) {
@@ -71,9 +72,10 @@ const ListsPage = () => {
           <Box className={classes.listsBox}>
             {lists.map((listItem) => (
               <Box key={listItem.id}>
-                <ListItem listItem={listItem} messagesRef={messagesRef} />
+                <ListItem listItem={listItem} listsRef={listsRef} />
               </Box>
             ))}
+            <AddFabBtn onClick={flipCreateListModal} />
           </Box>
         );
       }
@@ -98,6 +100,7 @@ const ListsPage = () => {
     </>
   ) : null;
 };
+
 const EmptyLists = ({ flipCreateListModal }) => {
   const classes = useStyles();
   return (

@@ -4,37 +4,40 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useHistory } from "react-router-dom";
+import { Loading } from "..";
 import { LISTS_PAGE } from "../../utils/rootPath";
 import useStyles from "./ListItemStyle";
-export default function ListItem({ listItem, messagesRef }) {
+export default function ListItem({ listItem, listsRef }) {
   const classes = useStyles();
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    event.stopPropagation();
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setAnchorEl(e.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.stopPropagation();
     setAnchorEl(null);
   };
-  const _messagesRef = messagesRef.doc(listItem.id).collection("toDoList");
-  const [toDoList, loading] = useCollectionData(_messagesRef, {
+  const _toDoListRef = listsRef.doc(listItem.id).collection("toDoList");
+  const [toDoList, loading] = useCollectionData(_toDoListRef, {
     idField: "id",
   });
-  console.log(`listItem`, listItem);
-  console.log(`toDoList`, toDoList);
-  const pushToItem = () => {
-    history.push(`${LISTS_PAGE}/${listItem.id}`);
-  };
+
   return !loading ? (
-    <Box className={classes.listItem} onClick={() => pushToItem()}>
+    <Box
+      className={classes.listItem}
+      onClick={() => history.push(`${LISTS_PAGE}/${listItem.id}`)}
+    >
       <Box className={classes.listItemBody}>
         <h3 children={listItem.title} />
         <Box display="flex" alignItems="center" gap="10">
           <h3
-            children={`${toDoList.length}/${toDoList.length}`}
+            children={`${
+              toDoList.filter((item) => item.cheked && item).length
+            }/${toDoList.length}`}
             className={classes.lengthItems}
           />
           <IconButton children={<MoreVert />} onClick={handleClick} />
@@ -45,5 +48,7 @@ export default function ListItem({ listItem, messagesRef }) {
       </Box>
       <Box borderBottom="1px black solid" width="100%" paddingBottom={0.8} />
     </Box>
-  ) : null;
+  ) : (
+    <Loading />
+  );
 }

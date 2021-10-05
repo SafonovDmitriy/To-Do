@@ -1,5 +1,5 @@
 import { Avatar, Menu, MenuItem } from "@material-ui/core";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../firebase";
 import { clearDataAction } from "../../redux/actions/CommonActions";

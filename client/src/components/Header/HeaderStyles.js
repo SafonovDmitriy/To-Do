@@ -30,4 +30,9 @@ export default makeStyles({
     gap: 10,
     alignItems: "center",
   },
+  controleBtns: {
+    display: "flex",
+    gap: 10,
+    flexDirection: "row",
+  },
 });
